@@ -1,0 +1,18 @@
+.logo {
+  display: inline-block;
+  font-size: 2em;
+  font-weight: bold;
+  unicode-bidi: isolate;
+}
+
+.header {
+  text-align: center;
+  font-family: "Merriweather, serif";
+  font-size: 2rem;
+}
+
+.footer {
+  text-align: center;
+  font-family: "Merriweather, serif";
+  font-size: 1rem;
+}
