@@ -1,36 +1,98 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# News App
 
-## Getting Started
+This project is a full-stack JavaScript application for fetching and displaying news articles. It leverages Next.js for the frontend, Node.js with Express for the backend, and integrates with external APIs for news data. The project is containerized using Docker and uses Terraform for infrastructure management.
 
-First, run the development server:
+## Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- Server-Side Rendering (SSR) with Next.js
+- API integration for fetching news articles
+- Docker for containerization
+- Terraform for infrastructure as code
+- Jest for testing
+- GitHub Actions for CI/CD
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Setup Development Environment
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+1. **Clone the repository**:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+   ```sh
+   git clone https://github.com/yourusername/news-app.git
+   cd news-app
+   ```
 
-## Learn More
+2. **Install dependencies**:
 
-To learn more about Next.js, take a look at the following resources:
+   ```sh
+   yarn
+   ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+3. **Set up environment variables**:
+   Create a `.env.local` file in the root directory and add your environment variables:
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+   ```env
+   NEWS_API_KEY=your_api_key_here
+   ```
 
-## Deploy on Vercel
+4. **Run the development server**:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+   ```sh
+   yarn dev
+   ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+5. **Run tests**:
+
+   ```sh
+   yarn test
+   ```
+
+6. **Run Lints**:
+
+   ```sh
+   yarn lint
+   ```
+
+7. **Build the project**:
+   ```sh
+   yarn build
+   ```
+
+## Folder Structure
+
+- **components/**: Contains React components used in the application.
+  - **article/**: Components related to displaying articles.
+  - **layout/**: Layout components like Header and Footer.
+- **pages/**: Next.js pages.
+- **services/**: Service modules for handling API calls and their business logic.
+  - **news/**: Modules related to fetching and processing news data.
+- **.vscode/**: Visual Studio Code settings.
+- **.husky/**: Husky configuration for Git hooks.
+- **public/**: Static assets.
+- **.env.local**: Environment variables.
+- **package.json**: Project metadata and scripts.
+- **tsconfig.json**: TypeScript configuration.
+
+## Usage
+
+1. **Fetch news articles**:
+   The application fetches news articles from an external API and displays them on the homepage.
+
+2. **Navigate through articles**:
+   Users can click on articles to read more details.
+
+## Contributing
+
+1. **Fork the repository**.
+2. **Create a new branch**:
+   ```sh
+   git checkout -b feature-branch
+   ```
+3. **Make your changes**.
+4. **Commit your changes**:
+   ```sh
+   git commit -m "Add new feature"
+   ```
+5. **Push to the branch**:
+   ```sh
+   git push origin feature-branch
+   ```
+6. **Create a pull request**.

@@ -3,10 +3,21 @@ import styles from '@/pages/page.module.css';
 import { getTopHeadlines } from '@/services/news/news.ts';
 import { GetServerSideProps } from 'next';
 
+/**
+ * Props for the News component.
+ *
+ * @property {ArticleProps[]} articles - Array of article objects.
+ */
 interface NewsProps {
+  /** Array of article objects. */
   articles: ArticleProps[];
 }
 
+/**
+ * News component to display a list of articles.
+ *
+ * @param {NewsProps} props - The props for the News component.
+ */
 export default function News({ articles }: NewsProps) {
   return (
     <div className={styles['news-container']}>
