@@ -43,20 +43,19 @@ export default function Article({
 }: ArticleProps) {
   return (
     <div className={styles['news-card']}>
-      <Image
-        src={urlToImage}
-        alt={title}
-        className={styles['news-card-image']}
-        width={200}
-        height={200}
-      />
-      <div className={styles['news-card-content']}>
-        <ArticleTitle title={title} />
-        <ArticleDescription description={description} />
-        <Link href={url} className={styles['news-card-link']} target="_blank">
-          Read more
-        </Link>
-      </div>
+      <Link href={url} className={styles['news-card-link']} target="_blank">
+        <Image
+          src={urlToImage}
+          alt={title}
+          className={styles['news-card-image']}
+          width={200}
+          height={200}
+        />
+        <div className={styles['news-card-content']}>
+          <ArticleTitle title={title} />
+          <ArticleDescription description={description} />
+        </div>
+      </Link>
     </div>
   );
 }

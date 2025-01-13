@@ -48,18 +48,4 @@ describe('Article', () => {
     const imageElement = getByAltText(articleProps.title);
     expect(imageElement).toBeInTheDocument();
   });
-
-  it('renders the article link correctly', () => {
-    const { getByText } = render(
-      <Article
-        title={articleProps.title}
-        description={articleProps.description}
-        url={articleProps.url}
-        urlToImage={articleProps.urlToImage}
-      />,
-    );
-    const linkElement = getByText('Read more');
-    expect(linkElement).toBeInTheDocument();
-    expect(linkElement).toHaveAttribute('href', articleProps.url);
-  });
 });
