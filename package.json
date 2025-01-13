@@ -7,7 +7,10 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "terraform:init": "cd ./terraform && terraform init -reconfigure",
+    "terraform:plan": "cd ./terraform && terraform plan",
+    "terraform:apply": "cd ./terraform && terraform apply"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^6.6.3",

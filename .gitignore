@@ -43,3 +43,7 @@ next-env.d.ts
 
 # Personal
 __workbook*
+
+# Terraform
+terraform/***/.terraform/*
+*.tfstate*
