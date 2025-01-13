@@ -96,3 +96,51 @@ This project is a full-stack JavaScript application for fetching and displaying 
    git push origin feature-branch
    ```
 6. **Create a pull request**.
+
+## Deployment
+
+This project includes a `./terraform` folder that contains Infrastructure as Code (IAC) for deploying the application to Kubernetes. Deployment is straightforward and can be accomplished using a few simple yarn commands.
+
+To deploy the application, follow these steps:
+
+> **Note:** Ensure to update the `NEWS_API_KEY` secret in the `terraform/k8/configmap.tf` file before deployment.
+
+1. Initialize the Terraform configuration:
+
+   ```sh
+   yarn terraform:init
+   ```
+
+2. Plan the deployment:
+
+   ```sh
+   yarn terraform:plan
+   ```
+
+3. Apply the deployment:
+   ```sh
+   yarn terraform:apply
+   ```
+   For testing this on a local machine, I recommend using [kind](https://kind.sigs.k8s.io/docs/user/quick-start/).
+   > **Note:** When deploying locally, make sure to comment out `hpa.tf` and `pdb.tf` as [kind](https://kind.sigs.k8s.io/docs/user/quick-start/) does not support these by default out of the box.
+
+## Infrastructure Architecture.
+
+![Alt text](./docs/architecture.png)
+
+This architecture is designed for a highly available, scalable, and resilient multi-region application deployment using AWS services and Kubernetes clusters.
+
+### Key Features:
+
+- Global Resilience:
+- Traffic is geo-balanced between regions with failover mechanisms for DNS and load balancers.
+- Kubernetes clusters are deployed across different cloud providers within each region to mitigate provider-specific outages.
+- Multiple fallback mechanisms at every level (DNS, load balancer, and cluster) ensure high availability.
+
+### Motivation Behind the Architecture
+
+1. High Availability
+2. Scalability
+3. Multi-Cloud Redundancy
+4. Low Latency
+5. Disaster Recovery
