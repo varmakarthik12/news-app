@@ -1,11 +1,13 @@
+
+
 resource "kubernetes_config_map" "news_app_config" {
   metadata {
-    name      = "news-app-config"
+    name      = "${local.naming_prefix}-config"
     namespace = kubernetes_namespace.news_app.metadata.0.name
   }
 
   data = {
-    NODE_ENV = "production"
+    NODE_ENV = local.node_env
     # TODO: Move this to secrets manager
     NEWS_API_KEY = "API_KEY_HERE"
   }

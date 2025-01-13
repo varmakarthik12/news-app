@@ -1,7 +1,11 @@
+locals {
+  app_selector = "${local.naming_prefix}-selector"
+}
+
 resource "kubernetes_deployment" "news_app" {
   metadata {
     # Metadata for the deployment
-    name      = "news-app"
+    name      = "${local.naming_prefix}-deployment"
     namespace = kubernetes_namespace.news_app.metadata.0.name
   }
 
@@ -12,7 +16,7 @@ resource "kubernetes_deployment" "news_app" {
     selector {
       # Selector to match the pods with the label app=news-app
       match_labels = {
-        app = "news-app"
+        app = local.app_selector
       }
     }
 
@@ -20,19 +24,19 @@ resource "kubernetes_deployment" "news_app" {
       metadata {
         # Labels for the pod template
         labels = {
-          app = "news-app"
+          app = local.app_selector
         }
       }
 
       spec {
         container {
           # Container definition for the news-app
-          name  = "news-app"
-          image = "varmakarthik12/news-app:latest"
+          name  = "${local.naming_prefix}-container"
+          image = var.image_name
 
           port {
-            # Expose port 80 on the container
-            container_port = 3000
+            # Expose port on the container
+            container_port = var.container_port
           }
 
           env_from {
@@ -45,12 +49,12 @@ resource "kubernetes_deployment" "news_app" {
           resources {
             # Define resource limits and requests
             limits = {
-              cpu    = "500m"
-              memory = "512Mi"
+              cpu    = var.cpu_limit
+              memory = var.memory_limit
             }
             requests = {
-              cpu    = "250m"
-              memory = "256Mi"
+              cpu    = var.cpu_request
+              memory = var.memory_request
             }
           }
 
@@ -67,8 +71,8 @@ resource "kubernetes_deployment" "news_app" {
           liveness_probe {
             # Liveness probe to check if the app is running
             http_get {
-              path = "/api/health"
-              port = 3000
+              path = var.health_check_path
+              port = var.container_port
             }
             initial_delay_seconds = 20
             period_seconds        = 10

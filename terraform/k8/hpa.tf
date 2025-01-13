@@ -3,7 +3,7 @@
 
 resource "kubernetes_horizontal_pod_autoscaler" "news_app_hpa" {
   metadata {
-    name      = "news-app-hpa"
+    name      = "${local.naming_prefix}-hpa"
     namespace = kubernetes_namespace.news_app.metadata.0.name
   }
 
